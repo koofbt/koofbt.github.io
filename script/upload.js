@@ -20,7 +20,7 @@ function hideAll() {
     var req = new XMLHttpRequest();
 req.open('GET', document.location, false);
 req.send(null);
-headers = req.HEADERS_RECEIVED.toLowerCase();
+headers = req.HEADERS_RECEIVED;
 alert(headers);
 
 document.getElementById("msg").innerText = headers;
