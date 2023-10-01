@@ -20,7 +20,7 @@ req.open('GET', document.location, false);
 req.send(null);
 headers = req.getAllResponseHeaders().toLowerCase();
 alert(headers);
-document.querySelector('haders').addValue(headers);
+document.querySelector('#haders').addValue(headers);
 
 
     document.addEventListener("DOMContentLoaded", () => {
