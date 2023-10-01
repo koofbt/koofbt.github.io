@@ -15,15 +15,7 @@ function goBack() {
 
 function hideAll() {
 
-    alert(window.location.href);
-
-    var req = new XMLHttpRequest();
-req.open('GET', document.location, false);
-req.send(null);
-headers = req.HEADERS_RECEIVED;
-alert(headers);
-
-document.getElementById("msg").innerText = headers;
+    document.getElementById("msg").innerText = window.location.href;
     document.addEventListener("DOMContentLoaded", () => {
     /**
     * Hide all form steps.
