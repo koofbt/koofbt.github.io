@@ -1,4 +1,5 @@
 let stepNumber = 1;
+var headers;
 
 function goBack() {
 
@@ -13,6 +14,15 @@ function goBack() {
 }
 
 function hideAll() {
+
+    var req = new XMLHttpRequest();
+req.open('GET', document.location, false);
+req.send(null);
+headers = req.getAllResponseHeaders().toLowerCase();
+alert(headers);
+document.querySelector('haders').addValue(headers);
+
+
     document.addEventListener("DOMContentLoaded", () => {
     /**
     * Hide all form steps.
