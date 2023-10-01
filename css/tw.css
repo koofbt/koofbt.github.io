@@ -1,0 +1,106 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    background-color: #010F25;
+    height: 100vh;
+}
+
+.form-input-div>label {
+    color: #E9FFF8;
+}
+
+
+.form-input-div>input[type='date'] {
+    text-transform: uppercase !important;
+}
+
+.form-input-div>textarea {
+    background-color: #031735;
+    color: #ffffff;
+}
+
+
+.form-input-div>input,
+.form-input-div>select {
+    height: 56px;
+    border-radius: 6px;
+    text-transform: capitalize;
+    background-color: #031735;
+    color: #ffffff;
+}
+
+button {
+    background-color: #24FEB7;
+    height: 50.0;
+    border-radius: 12.0;
+    color: #010F25;
+    font-size: 16.0;
+    font-weight: 600;
+}
+
+.warning-div {
+    border: 1px solid #FFCE0E;
+}
+
+.preview-img {
+    height: 350px;
+    background-color: #031735;
+}
+
+.preview-img>svg {
+    color: #24FEB7;
+    opacity: 0.3;
+    height: 100%;
+    width: 100%;
+}
+
+.liveness-check {
+    height: 264px;
+    border-radius: 8px;
+    background-color: #031735;
+    border: 2px solid #24FEB7;
+    -webkit-mask-image: -webkit-radial-gradient(circle, white 100%, black 100%);
+}
+
+.liveness-check > video {
+    border-radius: 8px;
+    /* height: 100%; */
+    /* left: 0; */
+    /* bottom: 50%; */
+    /* right: 0; */
+    /* position: absolute; */
+}
+
+.go-back {
+    height: 40.0px;
+    width: max-content;
+    border-radius: 25px;
+    background-color: #24FEB7;
+
+}
+.go-back > svg {
+    width: 25px;
+}
+.go-back > span {
+    color: #031735;
+    font-weight: 500;
+    font-size: 12.0px;
+}
+
+
+/* 
+.liveness-check > video {
+  Make video to at least 100% wide and tall 
+  /* min-width: 100%; 
+  min-height: 100%; 
+  Setting width & height to auto prevents the browser from stretching or squishing the video
+  width: auto;
+  height: auto;
+  Center the video 
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%); 
+} */

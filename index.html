@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../css/main.css" />
+    <title>Bitnob KYC - Liveness Check</title>
+</head>
+
+<body>
+    <div id="main-forms" class="flex flex-col px-4 py-6">
+        
+        <div class="go-back flex flex-row items-center px-3 py-2" onclick="goBack()">
+            <svg class="mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 15.75L3 12m0 0l3.75-3.75M3 12h18" />
+            </svg>  
+            <span>
+                Go back
+            </span>
+        </div>
+        <!-- Government Form -->
+        <div id="step-1" class="form-step">
+            <form>
+                <div class="mt-6 mb-5">
+                    <p class="text-3xl text-white">Government Issued ID</p>
+                    <p class="text-white">Provide the required information below</p>
+                </div>
+
+                <div class="flex flex-col py-4 form-input-div">
+                    <label class="text-xs mb-2" for="country">Country</label>
+                    <select class="p-2" name="country" 
+                    onchange="changeCountry(this)" 
+                    required placeholder="Select a country" id="country">
+                        <option value="Male">Nigeria</option>
+                        <option value="Male">Egypt</option>
+                    </select>
+                </div>
+
+                <div class="flex flex-col py-4 form-input-div">
+                    <label class="text-xs mb-2" for="bvn">Bank Verification Number (BVN)</label>
+                    <input class="p-2" required type="number" name="bvn" id="bvn">
+                </div>
+
+                <div class="flex flex-col py-4 form-input-div">
+                    <label class="text-xs mb-2" for="docType">Document Type</label>
+                    <select class="p-2" name="gender" required placeholder="Select a gender" id="gender">
+                        <option value="Male">International Passport</option>
+                        <option value="Male">Voters Card</option>
+                        <option value="Male">etc</option>
+                    </select>
+                </div>
+
+                <div class="flex flex-col py-4 form-input-div">
+                    <label class="text-xs mb-2" for="residentialAddress">Document Number (of the document selected above)</label>
+            
+                    <input class="p-2 uppercase" required type="number" name="bvn" id="bvn">
+                </div>
+
+                
+
+                <div class="py-4">
+                    <button class="w-full upload-btn py-3 px-4 text-sm rounded-xl">
+                        Proceed to Upload Document ID
+                    </button>
+                </div>
+            </form>    
+        </div>
+
+        <!-- Document Upload  -->
+        <div id="step-2" class="form-step hidden">
+
+            <div class="warning-div flex flex-row mt-4  mb-4 rounded-xl p-4 items-center">
+                <span class="h-6 w-6 text-yellow-300 mr-2">
+                    <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                        strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                        <path strokeLinecap="round" strokeLinejoin="round"
+                            d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
+                    </svg>
+                </span>
+                <span class="text-xs text-white">Please upload an image of your government approved ID here</span>
+            </div>
+    
+            <div class="preview-img mt-6 rounded-xl p-4">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+                </svg>
+            </div>
+    
+            <div class="mt-6 py-4">
+                <button class="w-full upload-btn py-3 px-4 text-sm rounded-xl">
+                    Upload Image from your phone
+                </button>
+            </div>
+
+        </div>
+
+        <!-- Liveness Check and Preview -->
+        <div id="step-3" class="form-step hidden">
+            <div class="warning-div flex flex-row mt-4  mb-4 rounded-xl p-4 items-center">
+                <span class="h-6 w-6 text-yellow-300 mr-2">
+                    <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                        strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                        <path strokeLinecap="round" strokeLinejoin="round"
+                            d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
+                    </svg>
+                </span>
+                <span class="text-xs text-white">Please hold 2 fingers up to the side of your face. Ensure the fingers are not covering your face.</span>
+            </div>
+    
+            <div class="liveness-check p-2">
+                <video id="video" autoplay></video>
+            </div>
+    
+            <div class="mt-6 py-4">
+                <button class="w-full upload-btn py-3 px-4 text-sm rounded-xl">
+                    Upload Image from your phone
+                </button>
+            </div>
+
+        </div>
+
+        <!-- Personal Information -->
+        <div id="step-4" class="form-step hidden">
+            <form>
+                <div class="mt-6 mb-5">
+                    <p class="text-3xl text-white">Personal Information</p>
+                    <p class="text-white">Provide the required information below</p>
+                </div>
+
+                <div class="flex flex-col py-4 form-input-div">
+                    <label class="text-xs mb-2" for="dob">Date of Birth (As shown on the document you submitted)</label>
+                    <input class="p-2 uppercase" required placeholder="Select your date of birth" type="date" name="dob"
+                        id="dob">
+                </div>
+
+                <div class="flex flex-col py-4 form-input-div">
+                    <label class="text-xs mb-2" for="gender">Gender</label>
+                    <select class="p-2" name="gender" required placeholder="Select a gender" id="gender">
+                        <option value="Male">Male</option>
+                        <option value="Male">Female</option>
+                        <option value="Male">Unspecified</option>
+                    </select>
+                </div>
+
+                <div class="flex flex-col py-4 form-input-div">
+                    <label class="text-xs mb-2" for="residentialAddress">Residential Address</label>
+                    <textarea class="p-2" required name="residentialAddress" id="residentialAddress" cols="30"
+                        rows="3"></textarea>
+                </div>
+
+                <div class="flex flex-col py-4 form-input-div">
+                    <label class="text-xs mb-2" for="state">State/Region</label>
+                    <select class="p-2" required name="state" id="state">
+                        <option value="lagos">Lagos</option>
+                        <option value="abuja">Abuja</option>
+                    </select>
+                </div>
+
+                <div class="flex flex-col py-4 form-input-div">
+                    <label class="text-xs mb-2" for="postalCode">Postal/Zip Code</label>
+                    <input class="p-2" type="text" name="postalCode" id="postalCode">
+                </div>
+
+                <div class="py-4">
+                    <button class="w-full upload-btn py-3 px-4 text-sm rounded-xl">
+                        Save
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Success Screen -->
+        <div id="step-5" class="form-step hidden"></div>
+
+    </div>
+
+    <script type="text/javascript" src="./script/upload.js"></script>
+
+</body>
+
+</html>
