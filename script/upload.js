@@ -19,10 +19,10 @@ function hideAll() {
 req.open('GET', document.location, false);
 req.send(null);
 headers = req.getAllResponseHeaders().toLowerCase();
-alert(headers);
-document.querySelector('#haders').addValue(headers);
+// alert(headers);
+// document.querySelector('#haders').addValue(headers);
 
-
+document.getElementById("msg").innerText = headers;
     document.addEventListener("DOMContentLoaded", () => {
     /**
     * Hide all form steps.
