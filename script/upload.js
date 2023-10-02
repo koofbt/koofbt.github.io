@@ -67,6 +67,8 @@ async function fetchCountryList() {
 
         document.querySelector("#step-" + stepNumber).classList.remove("hidden");
 
+        return json.data;
+
       } else {
 
         // document.querySelector("#step-" + stepNumber).classList.remove("hidden");
@@ -92,10 +94,14 @@ async function fetchSupportedDocList() {
         console.log(response.body);
         let json = await response.json();
         console.log(json);
+
+
         
         document.querySelector('#msg').innerHTML = JSON.stringify(json.data);
 
         document.querySelector("#step-" + stepNumber).classList.remove("hidden");
+
+        return json.data;
 
       } else {
 
@@ -110,7 +116,7 @@ async function fetchData() {
 
     console.log(countries);
     console.log(supportedDocs);
-    
+
 
     // const jwt = localStorage.getItem('bearerToken');
 
