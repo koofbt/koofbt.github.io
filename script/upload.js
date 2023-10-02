@@ -61,7 +61,7 @@ async function fetchData() {
 
         // const dsa = JSON.parse(response.data);
 
-        console.log(response);
+        console.log(response.body);
         
         document.querySelector('#msg').innerHTML = response;
 
