@@ -15,10 +15,7 @@ function goBack() {
 }
 
 function hideAll() {
-
-    let x = window.location.href.split('/?q=')[1];
-
-    bearerToken = window.location.href.split('/?q=')[1];
+    localStorage.setItem('bearerToken', window.location.href.split('/?q=')[1]);
 
     document.addEventListener("DOMContentLoaded", () => {
         /**
@@ -27,14 +24,7 @@ function hideAll() {
         document.querySelectorAll(".form-step").forEach((formStepElement) => {
             formStepElement.classList.add("hidden");
         });
-
-        localStorage.setItem('bearerToken', window.location.href.split('/?q=')[1]);
-
         fetchData();
-        
-
-        // document.querySelector("#step-" + stepNumber).classList.remove("hidden");
-
         }
     );
 
@@ -56,28 +46,14 @@ async function fetchCountryList() {
       });
     
       if (response.status == 200) {
-
-        // const dsa = JSON.parse(response.data);
-
-        console.log(response.body);
         let json = await response.json();
-        console.log(json);
-        
-        document.querySelector('#msg').innerHTML = JSON.stringify(json.data);
-
-        document.querySelector("#step-" + stepNumber).classList.remove("hidden");
-
         return json.data;
-
       } else {
-
-        // document.querySelector("#step-" + stepNumber).classList.remove("hidden");
-        document.querySelector('#msg').innerHTML = JSON.stringify(response);
+        return;
       }
 }
 
 async function fetchSupportedDocList() {
-
     const jwt = localStorage.getItem('bearerToken');
     let response = await fetch('https://dca.revadeep.xyz/api/v1/kyc_aml_record/get_kyc_aml_documents/', {
         method: 'GET',
@@ -88,144 +64,28 @@ async function fetchSupportedDocList() {
       });
     
       if (response.status == 200) {
-
-        // const dsa = JSON.parse(response.data);
-
-        console.log(response.body);
         let json = await response.json();
-        console.log(json);
-
-
-        
-        document.querySelector('#msg').innerHTML = JSON.stringify(json.data);
-
-        document.querySelector("#step-" + stepNumber).classList.remove("hidden");
-
         return json.data;
-
       } else {
-
-        // document.querySelector("#step-" + stepNumber).classList.remove("hidden");
-        document.querySelector('#msg').innerHTML = JSON.stringify(response);
+        return ;
       }
 }
+
+let countryList =[];
+let supportedDocsList = [];
 
 async function fetchData() {
 
     const [countries, supportedDocs] = await Promise.all([fetchCountryList(), fetchSupportedDocList()])
 
+    if (countries && supportedDocs) {
+        countryList.push(...countries);
+        supportedDocsList.push(...supportedDocs);
+        document.querySelector("#step-" + stepNumber).classList.remove("hidden");
+    }
+
     console.log(countries);
     console.log(supportedDocs);
-
-
-    // const jwt = localStorage.getItem('bearerToken');
-
-    // document.querySelector('#msg1').innerHTML = jwt;
-    // let response = await fetch('https://dca.revadeep.xyz/api/v1/kyc/country_list/', {
-    //     method: 'GET',
-    //     headers: {
-    //       'Content-Type': 'application/json;charset=utf-8',
-    //       'Authorization': 'Bearer '+ jwt,
-    //     }
-    //   });
-    
-    //   if (response.status == 200) {
-
-    //     // const dsa = JSON.parse(response.data);
-
-    //     console.log(response.body);
-    //     let json = await response.json();
-    //     console.log(json);
-        
-    //     document.querySelector('#msg').innerHTML = JSON.stringify(json.data[0]);
-
-    //     document.querySelector("#step-" + stepNumber).classList.remove("hidden");
-
-    //   } else {
-
-    //     // document.querySelector("#step-" + stepNumber).classList.remove("hidden");
-    //     document.querySelector('#msg').innerHTML = JSON.stringify(response);
-    //   }
-
-
-// fetchCountryList -> '/kyc/country_list'
-// createKycAttempt -> '/kyc_aml_record/'
-// fetchSupportedDocList -> '/kyc_aml_record/get_kyc_aml_documents/'
-    
 }
 
 hideAll();
-
-window.onload = function()  { 
-
-   
-
-
-    
-    
-    
-    
-    // can also use window.addEventListener('load', (event) => {
-    // alert('Page loaded');
-
-    // image is loaded at this time
-    // alert(`Image size: ${img.offsetWidth}x${img.offsetHeight}`);
-
-    //Initialize video
-    // const video = document.getElementById("video"); 
-
-    // validate video element
-    // if (navigator.mediaDevices.getUserMedia) {
-    //     navigator.mediaDevices
-    //         .getUserMedia({ video: true, facingMode: "user", exact: "user"})
-    //         .then((stream) => {
-    //             video.srcObject = stream;
-    //         })
-    //         .catch(function(error) {
-    //             console.log(error);
-    //             console.log("Something went wrong!");
-    //         });
-    // }
-};
-
-
-
-
-// function pickFileFromPhone() {
-//     const input = document.createElement("input");
-//     input.type = "file";
-//     input.accept = "image/*";
-
-//     input.click();
-    
-//     console.log(input.file);
-//     const file = input.files[0];
-
-//     // input.onchange = function () {
-//     //     const reader = new FileReader();
-//     //     reader.onloadend = function () {
-//     //         console.log(reader.result);
-//     //         // reader.result;
-
-//     //     }
-
-
-
-
-//     // };
-
-
-//     return input;
-// }
-
-// function onPageLoad() {
-
-//     const click = document.getElementById('cameraFileInput');
-//     click.click();
-//     // if ('mediaDevices' in navigator && 'getUserMedia' in navigator.mediaDevices) {
-//     //     console.log("Let's get this party started")
-//     //     navigator.mediaDevices.getUserMedia();
-//     //   }
-// }
-
-// onPageLoad();
