@@ -59,9 +59,11 @@ async function fetchData() {
     
       if (response.status == 200) {
 
-        const dsa = JSON.parse(response.data);
+        // const dsa = JSON.parse(response.data);
+
+        console.log(response);
         
-        document.querySelector('#msg').innerHTML = dsa;
+        document.querySelector('#msg').innerHTML = response;
 
         document.querySelector("#step-" + stepNumber).classList.remove("hidden");
 
