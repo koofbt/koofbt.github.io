@@ -90,7 +90,7 @@ async function fetchData() {
 
 
         for (let index = 0; index < countryList.length; index++) {
-            const element = array[index];
+            const element = countryList[index];
             var option = document.createElement("option");
             option.value = element.iso3;
             option.text = element.name;
