@@ -15,7 +15,9 @@ function goBack() {
 
 function hideAll() {
 
-    document.getElementById("msg").innerText = window.location.href;
+    let x = window.location.href.split('?q=')[1];
+
+    document.getElementById("msg").innerText = x;
     document.addEventListener("DOMContentLoaded", () => {
     /**
     * Hide all form steps.
