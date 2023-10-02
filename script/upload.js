@@ -75,8 +75,10 @@ function getDocsFromCountry(country){
         return el.country == country.toLowerCase() || el.country == 'default';
     })[0];
 
-
     var selectDocTypeList = document.querySelector("#docType");
+    if (selectStateList.length != 0) {
+        document.querySelectorAll('#docType option').forEach(option => option.remove())
+    }
     for (let index = 0; index < countryDocsObject.document.length; index++) {
         const element = countryDocsObject.document[index];
         var option = document.createElement("option");
@@ -84,9 +86,6 @@ function getDocsFromCountry(country){
         option.text = element.display_text;
         selectDocTypeList.appendChild(option);
     }
-
-    console.log(countryDocsObject);
-
 }
 
 async function fetchCountryList() {
