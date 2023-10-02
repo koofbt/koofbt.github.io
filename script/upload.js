@@ -65,7 +65,7 @@ async function fetchData() {
         let json = await response.json();
         console.log(json);
         
-        document.querySelector('#msg').innerHTML = response;
+        document.querySelector('#msg').innerHTML = json.data[0];
 
         document.querySelector("#step-" + stepNumber).classList.remove("hidden");
 
