@@ -54,7 +54,7 @@ function getStatesFromCountry(country) {
     stateList.push(...countryObject.states);
 
     var selectStateList = document.querySelector("#state");
-    if (selectStateList.option.length != 0) {
+    if (selectStateList.length != 0) {
         document.querySelectorAll('#state option').forEach(option => option.remove())
     }
     for (let index = 0; index < stateList.length; index++) {
