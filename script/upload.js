@@ -25,7 +25,7 @@ function hideAll() {
             formStepElement.classList.add("hidden");
         });
         fetchData();
-        }
+    }
     );
 
 }
@@ -40,17 +40,17 @@ async function fetchCountryList() {
     let response = await fetch('https://dca.revadeep.xyz/api/v1/kyc/country_list/', {
         method: 'GET',
         headers: {
-          'Content-Type': 'application/json;charset=utf-8',
-          'Authorization': 'Bearer '+ jwt,
+            'Content-Type': 'application/json;charset=utf-8',
+            'Authorization': 'Bearer ' + jwt,
         }
-      });
-    
-      if (response.status == 200) {
+    });
+
+    if (response.status == 200) {
         let json = await response.json();
         return json.data;
-      } else {
+    } else {
         return;
-      }
+    }
 }
 
 async function fetchSupportedDocList() {
@@ -58,20 +58,20 @@ async function fetchSupportedDocList() {
     let response = await fetch('https://dca.revadeep.xyz/api/v1/kyc_aml_record/get_kyc_aml_documents/', {
         method: 'GET',
         headers: {
-          'Content-Type': 'application/json;charset=utf-8',
-          'Authorization': 'Bearer '+ jwt,
+            'Content-Type': 'application/json;charset=utf-8',
+            'Authorization': 'Bearer ' + jwt,
         }
-      });
-    
-      if (response.status == 200) {
+    });
+
+    if (response.status == 200) {
         let json = await response.json();
         return json.data;
-      } else {
-        return ;
-      }
+    } else {
+        return;
+    }
 }
 
-let countryList =[];
+let countryList = [];
 let supportedDocsList = [];
 
 async function fetchData() {
@@ -81,7 +81,23 @@ async function fetchData() {
     if (countries && supportedDocs) {
         countryList.push(...countries);
         supportedDocsList.push(...supportedDocs);
+
+
         document.querySelector("#step-" + stepNumber).classList.remove("hidden");
+
+        var selectCountryList = document.querySelector("#country");
+
+
+        for (let index = 0; index < countryList.length; index++) {
+            const element = array[index];
+
+            var option = document.createElement("option");
+            option.value = array[i].iso3;
+            option.text = array[i].name;
+            selectCountryList.appendChild(option);
+
+        }
+
     }
 
     console.log(countries);
