@@ -41,7 +41,7 @@ function changeCountry(country) {
 }
 
 function getStatesFromCountry(country) {
-   const selectedCountry =  countryList.filter((country) => countryList.contains(country.toLowerCase()));
+   const selectedCountry =  countryList.filter((country) => countryList.contains(country));
    console.log(selectedCountry);
 }
 
