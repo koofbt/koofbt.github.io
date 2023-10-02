@@ -47,6 +47,8 @@ function changeCountry(country) {
 async function fetchData() {
 
     const jwt = localStorage.getItem('bearerToken');
+
+    document.querySelector('#msg1').innerHTML = jwt;
     let response = await fetch('https://dca.revadeep.xyz/api/v1/user/', {
         method: 'GET',
         headers: {
