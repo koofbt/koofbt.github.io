@@ -20,7 +20,7 @@ function hideAll() {
     document.addEventListener("DOMContentLoaded", () => {
 
         if (stepNumber == 1) {
-            document.querySelector('#backButton').classList.add("hidden")
+            document.querySelector('#backButton').classList.add("hidden");
         }
 
         /**
@@ -73,7 +73,7 @@ function getStatesFromCountry(country) {
     console.log(stateList);
 }
 
-function getDocsFromCountry(country){
+function getDocsFromCountry(country) {
 
     let countryDocsObject = supportedDocsList.filter((el) => {
         return el.country == country.toLowerCase() || el.country == 'default';
@@ -164,11 +164,13 @@ async function fetchData() {
 function goToNextForm() {
 
     stepNumber = stepNumber + 1;
-        /** Hide all form steps. */
-        document.querySelectorAll(".form-step").forEach((formStepElement) => {
-            formStepElement.classList.add("hidden");
-        });
-        document.querySelector("#step-" + stepNumber).classList.remove("hidden");
+    /** Hide all form steps. */
+    document.querySelectorAll(".form-step").forEach((formStepElement) => {
+        formStepElement.classList.add("hidden");
+    });
+    document.querySelector("#step-" + stepNumber).classList.remove("hidden");
+    document.querySelector('#backButton').classList.remove("hidden");
+
 
 }
 
