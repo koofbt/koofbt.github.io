@@ -59,13 +59,13 @@ async function fetchData() {
     
       if (response.ok) {
         
-        document.querySelector('#msg').innerHTML = response;
+        document.querySelector('#msg').innerHTML = JSON.stringify(response.body);
 
         document.querySelector("#step-" + stepNumber).classList.remove("hidden");
 
       } else {
 
-        document.querySelector('#msg').innerHTML = response;
+        document.querySelector('#msg').innerHTML = JSON.stringify(response.body);
       }
 
 
