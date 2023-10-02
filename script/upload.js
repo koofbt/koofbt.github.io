@@ -58,8 +58,10 @@ async function fetchData() {
       });
     
       if (response.ok) {
+
+        const dsa = JSON.parse(response.data);
         
-        document.querySelector('#msg').innerHTML = JSON.stringify(response.data);
+        document.querySelector('#msg').innerHTML = dsa;
 
         document.querySelector("#step-" + stepNumber).classList.remove("hidden");
 
