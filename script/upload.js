@@ -18,6 +18,11 @@ function hideAll() {
     localStorage.setItem('bearerToken', window.location.href.split('/?q=')[1]);
 
     document.addEventListener("DOMContentLoaded", () => {
+
+        if (stepNumber == 1) {
+            document.querySelector('#backButton').classList.add("hidden")
+        }
+
         /**
         * Hide all form steps.
         */
