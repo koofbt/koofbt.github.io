@@ -59,7 +59,7 @@ async function fetchData() {
     
       if (response.status == 200) {
 
-        const dsa = JSON.parse(response.data[0]);
+        const dsa = JSON.parse(response.data);
         
         document.querySelector('#msg').innerHTML = dsa;
 
