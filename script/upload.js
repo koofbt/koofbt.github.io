@@ -1,6 +1,9 @@
 let stepNumber = 1;
 let bearerToken;
 var headers;
+let countryList = [];
+let supportedDocsList = [];
+let stateList = [];
 
 function goBack() {
 
@@ -44,8 +47,6 @@ function changeCountry(country) {
         document.querySelector("#bvnField").classList.add("hidden");
     }
 }
-
-let stateList = [];
 
 function getStatesFromCountry(country) {
     let countryObject = countryList.filter((el) => {
@@ -129,9 +130,6 @@ async function fetchSupportedDocList() {
     }
 }
 
-let countryList = [];
-let supportedDocsList = [];
-
 async function fetchData() {
 
     const [countries, supportedDocs] = await Promise.all([fetchCountryList(), fetchSupportedDocList()])
@@ -162,7 +160,6 @@ async function fetchData() {
 }
 
 function goToNextForm() {
-
     stepNumber = stepNumber + 1;
     /** Hide all form steps. */
     document.querySelectorAll(".form-step").forEach((formStepElement) => {
@@ -170,8 +167,10 @@ function goToNextForm() {
     });
     document.querySelector("#step-" + stepNumber).classList.remove("hidden");
     document.querySelector('#backButton').classList.remove("hidden");
+}
 
-
+function pickDocumentImage() {
+    document.querySelector("#imageSrc").src = "";
 }
 
 hideAll();
