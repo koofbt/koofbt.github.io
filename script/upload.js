@@ -1,4 +1,5 @@
 let stepNumber = 1;
+let bearerToken;
 var headers;
 
 function goBack() {
@@ -17,23 +18,59 @@ function hideAll() {
 
     let x = window.location.href.split('/?q=')[1];
 
-    document.getElementById("msg").innerText = x;
+    bearerToken = window.location.href.split('/?q=')[1];
+
     document.addEventListener("DOMContentLoaded", () => {
-    /**
-    * Hide all form steps.
-    */
-    document.querySelectorAll(".form-step").forEach((formStepElement) => {
-        formStepElement.classList.add("hidden");
-    });
+        /**
+        * Hide all form steps.
+        */
+        document.querySelectorAll(".form-step").forEach((formStepElement) => {
+            formStepElement.classList.add("hidden");
+        });
 
-    document.querySelector("#step-" + stepNumber).classList.remove("hidden");
+        localStorage.setItem('bearerToken', window.location.href.split('/?q=')[1]);
 
-    });
+        fetchData();
+        
+
+        // document.querySelector("#step-" + stepNumber).classList.remove("hidden");
+
+        }
+    );
 
 }
 
 function changeCountry(country) {
     console.log(country.value);
+}
+
+async function fetchData() {
+
+    const jwt = localStorage.getItem('bearerToken');
+    let response = await fetch('https://dca.revadeep.xyz/api/v1/user/', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8',
+          'Authorization': 'Bearer '+ jwt,
+        }
+      });
+    
+      if (response.ok) {
+        
+        document.querySelector('#msg').innerHTML = response;
+
+        document.querySelector("#step-" + stepNumber).classList.remove("hidden");
+
+      } else {
+
+        document.querySelector('#msg').innerHTML = response;
+      }
+
+
+// fetchCountryList -> '/kyc/country_list'
+// createKycAttempt -> '/kyc_aml_record/'
+// fetchSupportedDocList -> '/kyc_aml_record/get_kyc_aml_documents/'
+    
 }
 
 hideAll();
