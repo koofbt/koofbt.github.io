@@ -49,7 +49,7 @@ async function fetchData() {
     const jwt = localStorage.getItem('bearerToken');
 
     document.querySelector('#msg1').innerHTML = jwt;
-    let response = await fetch('https://dca.revadeep.xyz/api/v1/user/', {
+    let response = await fetch('https://dca.revadeep.xyz/api/v1/users/', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json;charset=utf-8',
