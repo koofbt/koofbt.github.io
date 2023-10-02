@@ -57,9 +57,9 @@ async function fetchData() {
         }
       });
     
-      if (response.ok) {
+      if (response.status == 200) {
 
-        const dsa = JSON.parse(response.data);
+        const dsa = JSON.parse(response.data[0]);
         
         document.querySelector('#msg').innerHTML = dsa;
 
