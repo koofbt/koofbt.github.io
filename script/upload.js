@@ -39,13 +39,19 @@ function changeCountry(country) {
     }
 }
 
+
+let stateList = [];
+
 function getStatesFromCountry(country) {
     let countryObject = countryList.filter((el) => {
         return el.name == country;
     })[0];
-    // const selectedCountry =  countryList.filter(item => item.name == country);
-    // console.log(countryList);
-    console.log(countryObject);
+
+    if (stateList.length != 0) {
+        stateList.clear();
+    }
+    stateList.push(...countryObject.states);
+    console.log(stateList);
 }
 
 async function fetchCountryList() {
@@ -96,12 +102,9 @@ async function fetchData() {
         countryList.push(...countries);
         supportedDocsList.push(...supportedDocs);
 
-
         document.querySelector("#step-" + stepNumber).classList.remove("hidden");
-
         var selectCountryList = document.querySelector("#country");
         var selectDocTypeList = document.querySelector("#docType");
-
 
         for (let index = 0; index < countryList.length; index++) {
             const element = countryList[index];
