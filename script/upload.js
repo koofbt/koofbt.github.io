@@ -15,7 +15,7 @@ function goBack() {
 
 function hideAll() {
 
-    let x = window.location.href.split('?q=')[1];
+    let x = window.location.href.split('/?q=')[1];
 
     document.getElementById("msg").innerText = x;
     document.addEventListener("DOMContentLoaded", () => {
