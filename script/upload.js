@@ -45,7 +45,6 @@ function changeCountry(country) {
     }
 }
 
-
 let stateList = [];
 
 function getStatesFromCountry(country) {
@@ -161,6 +160,18 @@ async function fetchData() {
         // }
     }
 }
+
+function goToNextForm() {
+
+    stepNumber = stepNumber + 1;
+        /** Hide all form steps. */
+        document.querySelectorAll(".form-step").forEach((formStepElement) => {
+            formStepElement.classList.add("hidden");
+        });
+        document.querySelector("#step-" + stepNumber).classList.remove("hidden");
+
+}
+
 hideAll();
 
 
