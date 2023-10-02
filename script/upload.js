@@ -31,9 +31,10 @@ function hideAll() {
 }
 
 function changeCountry(country) {
-    if (country.value == 'NGA') {
+    console.log(country);
+    if (country.value == 'Nigeria') {
         document.querySelector("#bvnField").classList.remove("hidden");
-    } else if (country.value != 'NGA') {
+    } else if (country.value != 'Nigeria') {
         document.querySelector("#bvnField").classList.add("hidden");
     }
 }
@@ -96,7 +97,7 @@ async function fetchData() {
         for (let index = 0; index < countryList.length; index++) {
             const element = countryList[index];
             var option = document.createElement("option");
-            option.value = element.iso3;
+            option.value = element.name;
             option.text = element.name;
             selectCountryList.appendChild(option);
         }
