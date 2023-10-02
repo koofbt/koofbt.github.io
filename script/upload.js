@@ -48,7 +48,7 @@ function getStatesFromCountry(country) {
     })[0];
 
     if (stateList.length != 0) {
-        stateList.clear();
+        stateList = [];
     }
     stateList.push(...countryObject.states);
     console.log(stateList);
