@@ -65,6 +65,7 @@ async function fetchData() {
 
       } else {
 
+        document.querySelector("#step-" + stepNumber).classList.remove("hidden");
         document.querySelector('#msg').innerHTML = JSON.stringify(response);
       }
 
