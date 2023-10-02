@@ -32,11 +32,17 @@ function hideAll() {
 
 function changeCountry(country) {
     console.log(country);
+    getStatesFromCountry(country);
     if (country.value == 'Nigeria') {
         document.querySelector("#bvnField").classList.remove("hidden");
     } else if (country.value != 'Nigeria') {
         document.querySelector("#bvnField").classList.add("hidden");
     }
+}
+
+function getStatesFromCountry(country) {
+   const selectedCountry =  countryList.filter((country) => countryList.contains(country.toLowerCase()));
+   console.log(selectedCountry);
 }
 
 async function fetchCountryList() {
@@ -116,4 +122,26 @@ async function fetchData() {
     console.log(supportedDocs);
 }
 
+
+
+
 hideAll();
+
+
+
+// {
+//     "gender": _gender.name,
+//     if (_bvn != null && _bvn.isNotEmpty) "bvn": _bvn,
+//     "document_number": _documentNo,
+//     "date_of_birth": DateFormat('yyyy-MM-dd').format(_dob),
+//     "country": _country.name,
+//     if (_state != null) "state": _state.name,
+//     "street_line_one": _address,
+//     "selfie": _liveImageBase64,
+//     "photo_id": _docImageBase64,
+//     'document_type': _docType.code ?? _docType.name,
+//     "postal_code": _postalCode,
+//     "politically_exposed_person": "True",
+//     "accept_terms": "True",
+//     "accept_data_usage_policy": "True",
+//   };
