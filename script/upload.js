@@ -31,7 +31,6 @@ function hideAll() {
 }
 
 function changeCountry(country) {
-    console.log(country);
     getStatesFromCountry(country.value);
     if (country.value == 'Nigeria') {
         document.querySelector("#bvnField").classList.remove("hidden");
@@ -42,12 +41,12 @@ function changeCountry(country) {
 
 function getStatesFromCountry(country) {
     console.log(country);
-    let xx = countryList.filter((el) => {
-        return el.name == country;
-    });
+    // let xx = countryList.filter((el) => {
+    //     return el.name == country;
+    // });
     // const selectedCountry =  countryList.filter(item => item.name == country);
-   console.log(countryList);
-   console.log(xx);
+//    console.log(countryList);
+//    console.log(xx);
 }
 
 async function fetchCountryList() {
