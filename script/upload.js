@@ -21,9 +21,9 @@ function hideAll() {
         /**
         * Hide all form steps.
         */
-        document.querySelectorAll(".form-step").forEach((formStepElement) => {
-            formStepElement.classList.add("hidden");
-        });
+        // document.querySelectorAll(".form-step").forEach((formStepElement) => {
+        //     formStepElement.classList.add("hidden");
+        // });
         fetchData();
     }
     );
@@ -50,7 +50,21 @@ function getStatesFromCountry(country) {
     if (stateList.length != 0) {
         stateList = [];
     }
+
     stateList.push(...countryObject.states);
+
+    var selectStateList = document.querySelector("#state");
+    if (selectStateList.option.length != 0) {
+        document.querySelectorAll('#state option').forEach(option => option.remove())
+    }
+    for (let index = 0; index < stateList.length; index++) {
+        const element = stateList[index];
+        var option = document.createElement("option");
+        option.value = element.name;
+        option.text = element.name;
+        selectStateList.appendChild(option);
+    }
+
     console.log(stateList);
 }
 
