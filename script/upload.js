@@ -76,7 +76,7 @@ function getDocsFromCountry(country){
     })[0];
 
     var selectDocTypeList = document.querySelector("#docType");
-    if (selectStateList.length != 0) {
+    if (selectDocTypeList.length != 0) {
         document.querySelectorAll('#docType option').forEach(option => option.remove())
     }
     for (let index = 0; index < countryDocsObject.document.length; index++) {
