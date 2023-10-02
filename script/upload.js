@@ -41,6 +41,7 @@ function changeCountry(country) {
 }
 
 function getStatesFromCountry(country) {
+    console.log(country);
     let xx = countryList.filter((el) => {
         return el.name == country;
     });
