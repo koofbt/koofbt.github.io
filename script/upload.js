@@ -86,17 +86,24 @@ async function fetchData() {
         document.querySelector("#step-" + stepNumber).classList.remove("hidden");
 
         var selectCountryList = document.querySelector("#country");
+        var selectDocTypeList = document.querySelector("#docType");
 
 
         for (let index = 0; index < countryList.length; index++) {
             const element = array[index];
-
             var option = document.createElement("option");
-            option.value = array[i].iso3;
-            option.text = array[i].name;
+            option.value = element.iso3;
+            option.text = element.name;
             selectCountryList.appendChild(option);
-
         }
+
+        // for (let index = 0; index < supportedDocsList.length; index++) {
+        //     const element = array[index];
+        //     var option = document.createElement("option");
+        //     option.value = element.iso3;
+        //     option.text = element.name;
+        //     selectCountryList.appendChild(option);
+        // }
 
     }
 
