@@ -40,13 +40,12 @@ function changeCountry(country) {
 }
 
 function getStatesFromCountry(country) {
-    console.log(country);       
-    let xx = countryList.filter((el) => {
+    let countryObject = countryList.filter((el) => {
         return el.name == country;
-    });
+    })[0];
     // const selectedCountry =  countryList.filter(item => item.name == country);
     // console.log(countryList);
-    console.log(xx);
+    console.log(countryObject);
 }
 
 async function fetchCountryList() {
@@ -121,9 +120,6 @@ async function fetchData() {
         // }
 
     }
-
-    console.log(countries);
-    console.log(supportedDocs);
 }
 
 
