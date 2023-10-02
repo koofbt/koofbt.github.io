@@ -32,6 +32,7 @@ function hideAll() {
 
 function changeCountry(country) {
     getStatesFromCountry(country.value);
+    getDocsFromCountry(country.value);
     if (country.value == 'Nigeria') {
         document.querySelector("#bvnField").classList.remove("hidden");
     } else if (country.value != 'Nigeria') {
@@ -66,6 +67,16 @@ function getStatesFromCountry(country) {
     }
 
     console.log(stateList);
+}
+
+function getDocsFromCountry(country){
+
+    let countryDocsObject = supportedDocsList.filter((el) => {
+        return el.country == country.toLowerCase() || el.country == 'default';
+    })[0];
+
+    console.log(countryDocsObject);
+
 }
 
 async function fetchCountryList() {
@@ -128,20 +139,15 @@ async function fetchData() {
             selectCountryList.appendChild(option);
         }
 
-        // for (let index = 0; index < supportedDocsList.length; index++) {
+        // for (let index = 0; index < selectDocTypeList.length; index++) {
         //     const element = array[index];
         //     var option = document.createElement("option");
         //     option.value = element.iso3;
         //     option.text = element.name;
         //     selectCountryList.appendChild(option);
         // }
-
     }
 }
-
-
-
-
 hideAll();
 
 
