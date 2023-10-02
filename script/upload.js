@@ -21,9 +21,9 @@ function hideAll() {
         /**
         * Hide all form steps.
         */
-        // document.querySelectorAll(".form-step").forEach((formStepElement) => {
-        //     formStepElement.classList.add("hidden");
-        // });
+        document.querySelectorAll(".form-step").forEach((formStepElement) => {
+            formStepElement.classList.add("hidden");
+        });
         fetchData();
     }
     );
