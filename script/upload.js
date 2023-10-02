@@ -31,6 +31,9 @@ function hideAll() {
 }
 
 function changeCountry(country) {
+    if (country.value == 'NGA') {
+        document.querySelector("#bvnField").classList.remove("hidden");
+    }
     console.log(country.value);
 }
 
