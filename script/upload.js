@@ -44,12 +44,10 @@ function changeCountry(country) {
     console.log(country.value);
 }
 
-async function fetchData() {
+async function fetchCountryList() {
 
     const jwt = localStorage.getItem('bearerToken');
-
-    document.querySelector('#msg1').innerHTML = jwt;
-    let response = await fetch('https://dca.revadeep.xyz/api/v1/users/', {
+    let response = await fetch('https://dca.revadeep.xyz/api/v1/kyc/country_list/', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json;charset=utf-8',
@@ -65,7 +63,7 @@ async function fetchData() {
         let json = await response.json();
         console.log(json);
         
-        document.querySelector('#msg').innerHTML = JSON.stringify(json.data[0]);
+        document.querySelector('#msg').innerHTML = JSON.stringify(json.data);
 
         document.querySelector("#step-" + stepNumber).classList.remove("hidden");
 
@@ -74,6 +72,74 @@ async function fetchData() {
         // document.querySelector("#step-" + stepNumber).classList.remove("hidden");
         document.querySelector('#msg').innerHTML = JSON.stringify(response);
       }
+}
+
+async function fetchSupportedDocList() {
+
+    const jwt = localStorage.getItem('bearerToken');
+    let response = await fetch('https://dca.revadeep.xyz/api/v1/kyc_aml_record/get_kyc_aml_documents/', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8',
+          'Authorization': 'Bearer '+ jwt,
+        }
+      });
+    
+      if (response.status == 200) {
+
+        // const dsa = JSON.parse(response.data);
+
+        console.log(response.body);
+        let json = await response.json();
+        console.log(json);
+        
+        document.querySelector('#msg').innerHTML = JSON.stringify(json.data);
+
+        document.querySelector("#step-" + stepNumber).classList.remove("hidden");
+
+      } else {
+
+        // document.querySelector("#step-" + stepNumber).classList.remove("hidden");
+        document.querySelector('#msg').innerHTML = JSON.stringify(response);
+      }
+}
+
+async function fetchData() {
+
+    const [countries, supportedDocs] = await Promise.all([fetchCountryList(), fetchSupportedDocList()])
+
+    console.log(countries);
+    console.log(supportedDocs);
+    
+
+    // const jwt = localStorage.getItem('bearerToken');
+
+    // document.querySelector('#msg1').innerHTML = jwt;
+    // let response = await fetch('https://dca.revadeep.xyz/api/v1/kyc/country_list/', {
+    //     method: 'GET',
+    //     headers: {
+    //       'Content-Type': 'application/json;charset=utf-8',
+    //       'Authorization': 'Bearer '+ jwt,
+    //     }
+    //   });
+    
+    //   if (response.status == 200) {
+
+    //     // const dsa = JSON.parse(response.data);
+
+    //     console.log(response.body);
+    //     let json = await response.json();
+    //     console.log(json);
+        
+    //     document.querySelector('#msg').innerHTML = JSON.stringify(json.data[0]);
+
+    //     document.querySelector("#step-" + stepNumber).classList.remove("hidden");
+
+    //   } else {
+
+    //     // document.querySelector("#step-" + stepNumber).classList.remove("hidden");
+    //     document.querySelector('#msg').innerHTML = JSON.stringify(response);
+    //   }
 
 
 // fetchCountryList -> '/kyc/country_list'
