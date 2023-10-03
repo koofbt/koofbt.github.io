@@ -19,9 +19,11 @@ function goBack() {
 
 function hideAll() {
 
-    window.onload((event) => {
-        console.log(event.location.href);
-    })
+    console.log(window.location);
+
+    // window.onload((event) => {
+    //     console.log(event.location.href);
+    // })
 
     document.addEventListener("DOMContentLoaded", () => {
         localStorage.setItem('bearerToken', window.location.href.split('/?q=')[1]);
