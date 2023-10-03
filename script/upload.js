@@ -226,7 +226,7 @@ function takePhoto() {
         const fileReader = getBase64(blob);
 
         fileReader.onload = e => {
-            preview.src = e.target.result;
+            videoLC.src = e.target.result;
             livenessCheckBase64 = e.target.result;
         }
         fileReader.onerror = function (error) {
