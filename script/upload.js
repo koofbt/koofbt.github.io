@@ -167,12 +167,13 @@ function goToNextForm() {
 const preview = document.querySelector("#imageSrc");
 function getBase64(file) {
     var reader = new FileReader();
+    let base64Text = '';
     reader.readAsDataURL(file);
     reader.onload = e => {
         preview.src = e.target.result;
-        console.log(e.target);
-        base64Text = reader.text;
-        return reader.text;
+        console.log(e.target.result);
+        base64Text = e.target.result;
+        return e.target.result;
     }
     reader.onerror = function (error) {
         console.log('Error: ', error);
