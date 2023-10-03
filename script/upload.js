@@ -169,6 +169,19 @@ function goToNextForm() {
     document.querySelector('#backButton').classList.remove("hidden");
 }
 
+function getBase64(file) {
+    var reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = function () {
+      console.log(reader.result);
+      return reader.result;
+    };
+    reader.onerror = function (error) {
+      console.log('Error: ', error);
+      return;
+    };
+ }
+
 function previewFile() {
     const preview = document.querySelector("#imageSrc");
     const file = document.querySelector("#pickFile").files[0];
@@ -184,9 +197,8 @@ function previewFile() {
     );
 
     if (file) {
-        reader.readAsDataURL(file);
-        reader.onload((el) => console.log(el.target.result));
-        console.log(file);
+        let x = getBase64(file);
+        console.log(x);
     }
 }
 
