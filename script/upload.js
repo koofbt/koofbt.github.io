@@ -167,25 +167,26 @@ function goToNextForm() {
 const preview = document.querySelector("#imageSrc");
 function getBase64(file) {
     var reader = new FileReader();
-    let base64Text = '';
     reader.readAsDataURL(file);
-    reader.onload = e => {
-        preview.src = e.target.result;
-        console.log(e.target.result);
-        base64Text = e.target.result;
-        return e.target.result;
-    }
-    reader.onerror = function (error) {
-        console.log('Error: ', error);
-    };
-    return base64Text;
+    return reader;
 }
 
 function previewFile() {
     const file = document.querySelector("#pickFile").files[0];
 
     if (file) {
-        const x = getBase64(file);
+        const fileReader = getBase64(file);
+
+        fileReader.onload = e => {
+            preview.src = e.target.result;
+            console.log(e.target.result);
+            base64Text = e.target.result;
+        }
+        fileReader.onerror = function (error) {
+            console.log('Error: ', error);
+        };
+
+
         console.log(x);
     }
 }
