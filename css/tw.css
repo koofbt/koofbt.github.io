@@ -55,7 +55,8 @@ button {
     height: 100%;
     width: 100%;
 }
-.preview-img > label > img {
+.preview-img > label > img,
+.liveness-check > img  {
     height: 100%;
     width: 100%;
 }
