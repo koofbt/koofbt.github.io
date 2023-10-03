@@ -169,17 +169,37 @@ function goToNextForm() {
     document.querySelector('#backButton').classList.remove("hidden");
 }
 
-const reader = new FileReader();
-const fileInput = document.getElementById("pickFile");
-const img = document.getElementById("imageSrc");
+function previewFile() {
+    const preview = document.querySelector("#imageSrc");
+    const file = document.querySelector("#pickFile").files[0];
+    const reader = new FileReader();
 
-reader.onload = e => {
-    img.src = e.target.result;
+    reader.addEventListener(
+        "load",
+        () => {
+            // convert image file to base64 string
+            preview.src = reader.result;
+        },
+        false,
+    );
+
+    if (file) {
+        reader.readAsDataURL(file);
+        console.log(file);
+    }
 }
-fileInput.addEventListener('change', e => {
-    const f = e.target.files[0];
-    const fileBase64 = reader.readAsDataURL(f);
-})
+
+// const reader = new FileReader();
+// const fileInput = document.getElementById("pickFile");
+// const img = document.getElementById("imageSrc");
+
+// reader.onload = e => {
+//     img.src = e.target.result;
+// }
+// fileInput.addEventListener('change', e => {
+//     const f = e.target.files[0];
+//     const fileBase64 = reader.readAsDataURL(f);
+// })
 
 // function pickDocumentImage() {
 //     document.querySelector("#imageSrc").src = "";
