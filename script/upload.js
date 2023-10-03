@@ -69,8 +69,6 @@ function getStatesFromCountry(country) {
         option.text = element.name;
         selectStateList.appendChild(option);
     }
-
-    console.log(stateList);
 }
 
 function getDocsFromCountry(country) {
@@ -177,7 +175,7 @@ function getBase64(file) {
     reader.onload = e => {
         preview.src = e.target.result;
         base64Text = reader.text;
-        console.log(base64Text);
+        console.log(reader.text);
         return reader.text;
     }
     reader.onerror = function (error) {
