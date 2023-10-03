@@ -178,7 +178,7 @@ function getBase64(file) {
     };
     reader.onerror = function (error) {
       console.log('Error: ', error);
-      return;
+      return
     };
  }
 
@@ -186,6 +186,10 @@ function previewFile() {
     const preview = document.querySelector("#imageSrc");
     const file = document.querySelector("#pickFile").files[0];
     const reader = new FileReader();
+
+    reader.onload = e => {
+        img.src = e.target.result;
+    }
 
     reader.addEventListener(
         "load",
@@ -197,22 +201,12 @@ function previewFile() {
     );
 
     if (file) {
-        let x = getBase64(file);
+        const x = getBase64(file);
         console.log(x);
     }
 }
 
-// const reader = new FileReader();
-// const fileInput = document.getElementById("pickFile");
-// const img = document.getElementById("imageSrc");
 
-// reader.onload = e => {
-//     img.src = e.target.result;
-// }
-// fileInput.addEventListener('change', e => {
-//     const f = e.target.files[0];
-//     const fileBase64 = reader.readAsDataURL(f);
-// })
 
 // function pickDocumentImage() {
 //     document.querySelector("#imageSrc").src = "";
