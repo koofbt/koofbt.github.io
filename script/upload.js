@@ -169,9 +169,22 @@ function goToNextForm() {
     document.querySelector('#backButton').classList.remove("hidden");
 }
 
-function pickDocumentImage() {
-    document.querySelector("#imageSrc").src = "";
+const reader = new FileReader();
+const fileInput = document.getElementById("pickFile");
+const img = document.getElementById("imageSrc");
+
+reader.onload = e => {
+    img.src = e.target.result;
 }
+fileInput.addEventListener('change', e => {
+    const f = e.target.files[0];
+    const fileBase64 = reader.readAsDataURL(f);
+    console.log(fileBase64);
+})
+
+// function pickDocumentImage() {
+//     document.querySelector("#imageSrc").src = "";
+// }
 
 hideAll();
 
