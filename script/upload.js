@@ -170,12 +170,12 @@ function goToNextForm() {
 const preview = document.querySelector("#imageSrc");
 function getBase64(file) {
     var reader = new FileReader();
-    var base64Text =
+    var base64Text = '';
     reader.readAsDataURL(file);
     reader.onload = e => {
         preview.src = e.target.result;
         base64Text = reader.text;
-        console.log(reader.text);
+        console.log(base64Text);
         return reader.text;
     }
     reader.onerror = function (error) {
