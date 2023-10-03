@@ -728,11 +728,7 @@ button {
 
 .liveness-check > video {
   border-radius: 8px;
-  /* height: 100%; */
-  /* left: 0; */
-  /* bottom: 50%; */
-  /* right: 0; */
-  /* position: absolute; */
+  height: 100% !important;
 }
 
 .go-back {

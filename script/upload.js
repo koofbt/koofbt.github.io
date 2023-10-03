@@ -212,13 +212,14 @@ function livenessCheckInit() {
 // Get a Blob from the currently selected camera source and
 // display this with an img element.
 function takePhoto() {
-    // imageCapture.takePhoto().then(function(blob) {
-    //   console.log('Took photo:', blob);
-    //   img.classList.remove('hidden');
-    //   img.src = URL.createObjectURL(blob);
-    // }).catch(function(error) {
-    //   console.log('takePhoto() error: ', error);
-    // });
+    imageCapture.takePhoto().then(function(blob) {
+      console.log('Took photo:', blob);
+      videoLC.classList.add('hidden');
+      const imageLivenessCheck = document.querySelector("#imageLVC");
+      imageLivenessCheck.src = URL.createObjectURL(blob);
+    }).catch(function(error) {
+      console.log('takePhoto() error: ', error);
+    });
 }
 
 
