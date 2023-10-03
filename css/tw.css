@@ -52,6 +52,8 @@ button {
 
 .preview-img > label {
     display: block;
+    height: 100%;
+    width: 100%;
 }
 .preview-img > label > img {
     height: 100%;
