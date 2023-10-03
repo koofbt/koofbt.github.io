@@ -167,36 +167,47 @@ function goToNextForm() {
     document.querySelector('#backButton').classList.remove("hidden");
 }
 
+
+var imageCapture;
+var mediaStream;
+
+var videoLC = document.querySelector('videoLVC');
+
 function livenessCheckInit() {
 
     if (stepNumber == 3) {
         let randNum = Math.floor(Math.random() * 5) + 1;
         document.querySelector('#livenessCheckMsg').innerHTML = "Please hold " + randNum + " fingers up to the side of your face. Ensure the fingers are not covering your face.";
+
+        const constraints = {
+            video: {
+                width: { min: 640, ideal: 1920 },
+                height: { min: 400, ideal: 1080 },
+                aspectRatio: { ideal: 1.7777777778 },
+            },
+            frameRate: { max: 30 },
+            facingMode: { exact: "user" }
+        };
+
+        navigator.mediaDevices.getUserMedia(constraints)
+            .then((e) => {
+                mediaStream = stream;
+                videoLC.srcObject = stream;
+                // video.classList.remove('hidden');
+                imageCapture = new ImageCapture(stream.getVideoTracks()[0]);
+                console.log(e);
+            })
+            .catch(error => {
+                console.log('getUserMedia error: ', error);
+            });
+
     }
 
-    const constraints = {
-        video: {
-            width: { min: 640, ideal: 1920 },
-            height: { min: 400, ideal: 1080 },
-            aspectRatio: { ideal: 1.7777777778 },
-        },
-        frameRate: { max: 30 },
-        facingMode: { exact: "user" }
-    };
 
-    navigator.mediaDevices.getUserMedia(constraints)
-        .then((e) => {
-            console.log(e);
-        })
-        .catch(error => {
-            console.log('getUserMedia error: ', error);
-        });
 
 
 
 }
-var imageCapture;
-var mediaStream;
 
 // Get a Blob from the currently selected camera source and
 // display this with an img element.
