@@ -193,11 +193,11 @@ function livenessCheckInit() {
             .then((e) => {
                 mediaStream = e;
 
-                if (mediaStream) {
-                    mediaStream.getTracks().forEach(track => {
-                      track.stop();
-                    });
-                  }
+                // if (mediaStream) {
+                //     mediaStream.getTracks().forEach(track => {
+                //       track.stop();
+                //     });
+                //   }
                 videoLC.srcObject = e;
                 // video.classList.remove('hidden');
                 imageCapture = new ImageCapture(e.getVideoTracks()[0]);
