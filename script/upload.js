@@ -159,6 +159,13 @@ function goToNextForm() {
     document.querySelectorAll(".form-step").forEach((formStepElement) => {
         formStepElement.classList.add("hidden");
     });
+
+    if (stepNumber == 3) {
+        let randNum =  Math.floor(Math.random() * 5) + 1;
+        console.log(randNum);
+        document.querySelector('#livenessCheckMsg').innerHTML = "Please hold " + randNum + " fingers up to the side of your face. Ensure the fingers are not covering your face.";
+    }
+
     document.querySelector("#step-" + stepNumber).classList.remove("hidden");
     document.querySelector('#backButton').classList.remove("hidden");
 }
@@ -185,11 +192,10 @@ function previewFile() {
         fileReader.onerror = function (error) {
             console.log('Error: ', error);
         };
-
-
-        console.log(x);
     }
 }
+
+
 
 hideAll();
 
