@@ -192,12 +192,6 @@ function livenessCheckInit() {
         navigator.mediaDevices.getUserMedia(constraints)
             .then((e) => {
                 mediaStream = e;
-
-                // if (mediaStream) {
-                //     mediaStream.getTracks().forEach(track => {
-                //       track.stop();
-                //     });
-                //   }
                 videoLC.srcObject = e;
                 // video.classList.remove('hidden');
                 imageCapture = new ImageCapture(e.getVideoTracks()[0]);
@@ -224,6 +218,18 @@ function takePhoto() {
       const imageLivenessCheck = document.querySelector("#imageLVC");
       imageLivenessCheck.classList.remove("hidden");
       imageLivenessCheck.src = URL.createObjectURL(blob);
+
+
+      const fileReader = getBase64(blob);
+
+        fileReader.onload = e => {
+            preview.src = e.target.result;
+            console.log(e.target.result);
+            base64Text = e.target.result;
+        }
+        fileReader.onerror = function (error) {
+            console.log('Error: ', error);
+        };
     }).catch(function(error) {
       console.log('takePhoto() error: ', error);
     });
