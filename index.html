@@ -104,8 +104,11 @@
             </div>
     
             <div class="mt-6 py-4">
-                <button class="w-full upload-btn py-3 px-4 text-sm rounded-xl" onclick="takePhoto()">
+                <button id="captureImg" class="w-full upload-btn py-3 px-4 text-sm rounded-xl" onclick="takePhoto()">
                     Capture
+                </button>
+                <button id="proceedPersonalInfo" class="w-full upload-btn py-3 px-4 text-sm rounded-xl hidden"  onclick="goToNextForm()">
+                    Proceed to Personal Information
                 </button>
             </div>
 

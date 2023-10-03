@@ -5,6 +5,15 @@ let countryList = [];
 let supportedDocsList = [];
 let stateList = [];
 
+
+var imageCapture;
+var mediaStream;
+
+let livenessCheckBase64 = '';
+let base64Text = '';
+var videoLC = document.querySelector('#videoLVC');
+const preview = document.querySelector("#imageSrc");
+
 function goBack() {
 
     if (stepNumber > 1) {
@@ -167,12 +176,6 @@ function goToNextForm() {
     document.querySelector('#backButton').classList.remove("hidden");
 }
 
-
-var imageCapture;
-var mediaStream;
-
-var videoLC = document.querySelector('#videoLVC');
-
 function livenessCheckInit() {
 
     if (stepNumber == 3) {
@@ -212,31 +215,34 @@ function livenessCheckInit() {
 // Get a Blob from the currently selected camera source and
 // display this with an img element.
 function takePhoto() {
-    imageCapture.takePhoto().then(function(blob) {
-      console.log('Took photo:', blob);
-      videoLC.classList.add('hidden');
-      const imageLivenessCheck = document.querySelector("#imageLVC");
-      imageLivenessCheck.classList.remove("hidden");
-      imageLivenessCheck.src = URL.createObjectURL(blob);
+    imageCapture.takePhoto().then(function (blob) {
+        console.log('Took photo:', blob);
+        videoLC.classList.add('hidden');
+        const imageLivenessCheck = document.querySelector("#imageLVC");
+        imageLivenessCheck.classList.remove("hidden");
+        imageLivenessCheck.src = URL.createObjectURL(blob);
 
 
-      const fileReader = getBase64(blob);
+        const fileReader = getBase64(blob);
 
         fileReader.onload = e => {
             preview.src = e.target.result;
-            console.log(e.target.result);
-            base64Text = e.target.result;
+            livenessCheckBase64 = e.target.result;
         }
         fileReader.onerror = function (error) {
             console.log('Error: ', error);
         };
-    }).catch(function(error) {
-      console.log('takePhoto() error: ', error);
+
+        if (imageLivenessCheck.src != '') {
+            document.querySelector('#captureImg').classList.add('hidden');
+            document.querySelector('#proceedPersonalInfo').classList.remove('hidden');
+        }
+    }).catch(function (error) {
+        console.log('takePhoto() error: ', error);
     });
 }
 
 
-const preview = document.querySelector("#imageSrc");
 function getBase64(file) {
     var reader = new FileReader();
     reader.readAsDataURL(file);
@@ -259,8 +265,6 @@ function previewFile() {
         };
     }
 }
-
-
 
 hideAll();
 
