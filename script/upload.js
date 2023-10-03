@@ -176,7 +176,7 @@ const img = document.getElementById("imageSrc");
 reader.onload = e => {
     img.src = e.target.result;
 }
-let xx = fileInput.addEventListener('change', e => {
+fileInput.addEventListener('change', e => {
     const f = e.target.files[0];
     const fileBase64 = reader.readAsDataURL(f);
 })

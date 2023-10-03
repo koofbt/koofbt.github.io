@@ -702,8 +702,9 @@ button {
 }
 
 .preview-img {
-  height: 300px;
+  height: 320px;
   background-color: #031735;
+  border: 2.0 solid #24FEB7;
 }
 
 .preview-img > label {
