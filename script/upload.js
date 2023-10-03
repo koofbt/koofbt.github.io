@@ -169,21 +169,25 @@ function goToNextForm() {
     document.querySelector('#backButton').classList.remove("hidden");
 }
 
+
+const preview = document.querySelector("#imageSrc");
 function getBase64(file) {
     var reader = new FileReader();
     reader.readAsDataURL(file);
-    reader.onload = function () {
+    reader.onload = e => {
+        preview.src = e.target.result;
         return reader.text;
-    };
+    }
+    // reader.onload = function () {
+    //     return reader.text;
+    // };
     reader.onerror = function (error) {
         console.log('Error: ', error);
     };
 }
 
 function previewFile() {
-    const preview = document.querySelector("#imageSrc");
     const file = document.querySelector("#pickFile").files[0];
-    const reader = new FileReader();
 
     // reader.addEventListener(
     //     "change",
