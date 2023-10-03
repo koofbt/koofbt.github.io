@@ -19,7 +19,7 @@ function goBack() {
 
 function hideAll() {
 
-    const bearerToken =  window.location.href.split('/?q=')[1];
+    const bearerToken = window.location.href.split('/?q=')[1];
     localStorage.setItem('bearerToken', bearerToken);
 
     fetchData();
@@ -36,7 +36,7 @@ function hideAll() {
         document.querySelectorAll(".form-step").forEach((formStepElement) => {
             formStepElement.classList.add("hidden");
         });
-        
+
     }
     );
 
@@ -170,17 +170,22 @@ function goToNextForm() {
 function livenessCheckInit() {
 
     if (stepNumber == 3) {
-        let randNum =  Math.floor(Math.random() * 5) + 1;
+        let randNum = Math.floor(Math.random() * 5) + 1;
         document.querySelector('#livenessCheckMsg').innerHTML = "Please hold " + randNum + " fingers up to the side of your face. Ensure the fingers are not covering your face.";
     }
 
+    const constraints = {
+        frameRate: { max: 30 },
+        facingMode: { exact: "user" }
+    };
+
     navigator.mediaDevices.getUserMedia(constraints)
-    .then((e) => {
-        console.log(e);
-    })
-    .catch(error => {
-      console.log('getUserMedia error: ', error);
-    });
+        .then((e) => {
+            console.log(e);
+        })
+        .catch(error => {
+            console.log('getUserMedia error: ', error);
+        });
 
 
 
@@ -198,7 +203,7 @@ function takePhoto() {
     // }).catch(function(error) {
     //   console.log('takePhoto() error: ', error);
     // });
-  }
+}
 
 
 const preview = document.querySelector("#imageSrc");
