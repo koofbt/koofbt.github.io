@@ -171,7 +171,7 @@ function goToNextForm() {
 var imageCapture;
 var mediaStream;
 
-var videoLC = document.querySelector('videoLVC');
+var videoLC = document.querySelector('#videoLVC');
 
 function livenessCheckInit() {
 
