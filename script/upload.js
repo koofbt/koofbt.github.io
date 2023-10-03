@@ -160,15 +160,45 @@ function goToNextForm() {
         formStepElement.classList.add("hidden");
     });
 
-    if (stepNumber == 3) {
-        let randNum =  Math.floor(Math.random() * 5) + 1;
-        console.log(randNum);
-        document.querySelector('#livenessCheckMsg').innerHTML = "Please hold " + randNum + " fingers up to the side of your face. Ensure the fingers are not covering your face.";
-    }
+    livenessCheckInit();
+
 
     document.querySelector("#step-" + stepNumber).classList.remove("hidden");
     document.querySelector('#backButton').classList.remove("hidden");
 }
+
+function livenessCheckInit() {
+
+    if (stepNumber == 3) {
+        let randNum =  Math.floor(Math.random() * 5) + 1;
+        document.querySelector('#livenessCheckMsg').innerHTML = "Please hold " + randNum + " fingers up to the side of your face. Ensure the fingers are not covering your face.";
+    }
+
+    navigator.mediaDevices.getUserMedia(constraints)
+    .then((e) => {
+        console.log(e);
+    })
+    .catch(error => {
+      console.log('getUserMedia error: ', error);
+    });
+
+
+
+}
+var imageCapture;
+var mediaStream;
+
+// Get a Blob from the currently selected camera source and
+// display this with an img element.
+function takePhoto() {
+    // imageCapture.takePhoto().then(function(blob) {
+    //   console.log('Took photo:', blob);
+    //   img.classList.remove('hidden');
+    //   img.src = URL.createObjectURL(blob);
+    // }).catch(function(error) {
+    //   console.log('takePhoto() error: ', error);
+    // });
+  }
 
 
 const preview = document.querySelector("#imageSrc");
