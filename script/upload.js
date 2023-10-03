@@ -19,17 +19,20 @@ function goBack() {
 
 function hideAll() {
 
-    console.log(window.location);
+    const bearerToken =  window.location.href.split('/?q=')[1];
+    localStorage.setItem('bearerToken', bearerToken);
+
 
     // window.onload((event) => {
     //     console.log(event.location.href);
     // })
 
     document.addEventListener("DOMContentLoaded", () => {
-        localStorage.setItem('bearerToken', window.location.href.split('/?q=')[1]);
         if (stepNumber == 1) {
             document.querySelector('#backButton').classList.add("hidden");
         }
+
+        console.log(localStorage.getItem('bearerToken'));
 
         /**
         * Hide all form steps.
