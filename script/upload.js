@@ -188,7 +188,7 @@ function previewFile() {
     const reader = new FileReader();
 
     reader.onload = e => {
-        img.src = e.target.result;
+        preview.src = e.target.result;
     }
 
     reader.addEventListener(
