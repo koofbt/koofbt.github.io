@@ -702,13 +702,19 @@ button {
 }
 
 .preview-img {
-  height: 350px;
+  height: 300px;
   background-color: #031735;
 }
 
-.preview-img>svg {
+.preview-img > label {
   color: #24FEB7;
-  opacity: 0.3;
+  /* opacity: 0.3; */
+  height: 100%;
+  width: 100%;
+  display: block;
+}
+
+.preview-img > label > img {
   height: 100%;
   width: 100%;
 }
