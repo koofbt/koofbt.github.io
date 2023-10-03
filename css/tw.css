@@ -49,7 +49,7 @@ button {
     background-color: #031735;
 }
 
-.preview-img>img {
+.preview-img>label {
     color: #24FEB7;
     opacity: 0.3;
     height: 100%;

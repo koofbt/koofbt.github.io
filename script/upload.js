@@ -176,11 +176,11 @@ const img = document.getElementById("imageSrc");
 reader.onload = e => {
     img.src = e.target.result;
 }
-fileInput.addEventListener('change', e => {
+let xx = fileInput.addEventListener('change', e => {
     const f = e.target.files[0];
     const fileBase64 = reader.readAsDataURL(f);
-    console.log(fileBase64);
 })
+console.log(xx);
 
 // function pickDocumentImage() {
 //     document.querySelector("#imageSrc").src = "";
