@@ -193,12 +193,6 @@ function previewFile() {
     }
 }
 
-
-
-// function pickDocumentImage() {
-//     document.querySelector("#imageSrc").src = "";
-// }
-
 hideAll();
 
 
