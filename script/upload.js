@@ -18,10 +18,9 @@ function goBack() {
 }
 
 function hideAll() {
-    localStorage.setItem('bearerToken', window.location.href.split('/?q=')[1]);
 
     document.addEventListener("DOMContentLoaded", () => {
-
+        localStorage.setItem('bearerToken', window.location.href.split('/?q=')[1]);
         if (stepNumber == 1) {
             document.querySelector('#backButton').classList.add("hidden");
         }
@@ -189,18 +188,6 @@ function getBase64(file) {
 
 function previewFile() {
     const file = document.querySelector("#pickFile").files[0];
-
-    // reader.addEventListener(
-    //     "change",
-    //     () => {
-    //         // convert image file to base64 string
-    //         preview.src = reader.result;
-    //     }
-    // );
-
-    // reader.onload = e => {
-    //     preview.src = e.target.result;
-    // }
 
     if (file) {
         const x = getBase64(file);
