@@ -201,7 +201,7 @@ function previewFile() {
 
     if (file) {
         const x = getBase64(file);
-        console.log(x);
+        console.log(file);
     }
 }
 
