@@ -185,7 +185,7 @@ function previewFile() {
 
     if (file) {
         reader.readAsDataURL(file);
-        reader.onloadend((el) => console.log(el));
+        reader.onload((el) => console.log(el.target.result));
         console.log(file);
     }
 }
