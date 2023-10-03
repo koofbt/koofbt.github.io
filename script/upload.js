@@ -173,9 +173,11 @@ function goToNextForm() {
 const preview = document.querySelector("#imageSrc");
 function getBase64(file) {
     var reader = new FileReader();
+    var base64Text =
     reader.readAsDataURL(file);
     reader.onload = e => {
         preview.src = e.target.result;
+        base64Text = reader.text;
         return reader.text;
     }
     // reader.onload = function () {
@@ -184,6 +186,7 @@ function getBase64(file) {
     reader.onerror = function (error) {
         console.log('Error: ', error);
     };
+    return base64Text;
 }
 
 function previewFile() {
@@ -203,7 +206,7 @@ function previewFile() {
 
     if (file) {
         const x = getBase64(file);
-        console.log(file);
+        console.log(x);
     }
 }
 
