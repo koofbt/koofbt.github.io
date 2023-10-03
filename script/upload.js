@@ -22,28 +22,82 @@ function hideAll() {
     const bearerToken =  window.location.href.split('/?q=')[1];
     localStorage.setItem('bearerToken', bearerToken);
 
-
-    // window.onload((event) => {
-    //     console.log(event.location.href);
-    // })
+    fetchData();
 
     document.addEventListener("DOMContentLoaded", () => {
         if (stepNumber == 1) {
             document.querySelector('#backButton').classList.add("hidden");
         }
 
-        console.log(localStorage.getItem('bearerToken'));
-
         /**
         * Hide all form steps.
         */
+
         document.querySelectorAll(".form-step").forEach((formStepElement) => {
             formStepElement.classList.add("hidden");
         });
-        fetchData();
+        
     }
     );
 
+}
+
+async function fetchData() {
+
+    const [countries, supportedDocs] = await Promise.all([fetchCountryList(), fetchSupportedDocList()])
+
+    if (countries && supportedDocs) {
+        countryList.push(...countries);
+        supportedDocsList.push(...supportedDocs);
+
+        document.querySelector("#step-" + stepNumber).classList.remove("hidden");
+        var selectCountryList = document.querySelector("#country");
+
+        for (let index = 0; index < countryList.length; index++) {
+            const element = countryList[index];
+            var option = document.createElement("option");
+            option.value = element.name;
+            option.text = element.name;
+            selectCountryList.appendChild(option);
+        }
+    }
+}
+
+async function fetchCountryList() {
+
+    const jwt = localStorage.getItem('bearerToken');
+    let response = await fetch('https://dca.revadeep.xyz/api/v1/kyc/country_list/', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json;charset=utf-8',
+            'Authorization': 'Bearer ' + jwt,
+        }
+    });
+
+    if (response.status == 200) {
+        let json = await response.json();
+        return json.data;
+    } else {
+        return;
+    }
+}
+
+async function fetchSupportedDocList() {
+    const jwt = localStorage.getItem('bearerToken');
+    let response = await fetch('https://dca.revadeep.xyz/api/v1/kyc_aml_record/get_kyc_aml_documents/', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json;charset=utf-8',
+            'Authorization': 'Bearer ' + jwt,
+        }
+    });
+
+    if (response.status == 200) {
+        let json = await response.json();
+        return json.data;
+    } else {
+        return;
+    }
 }
 
 function changeCountry(country) {
@@ -99,72 +153,6 @@ function getDocsFromCountry(country) {
     }
 }
 
-async function fetchCountryList() {
-
-    const jwt = localStorage.getItem('bearerToken');
-    let response = await fetch('https://dca.revadeep.xyz/api/v1/kyc/country_list/', {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json;charset=utf-8',
-            'Authorization': 'Bearer ' + jwt,
-        }
-    });
-
-    if (response.status == 200) {
-        let json = await response.json();
-        return json.data;
-    } else {
-        return;
-    }
-}
-
-async function fetchSupportedDocList() {
-    const jwt = localStorage.getItem('bearerToken');
-    let response = await fetch('https://dca.revadeep.xyz/api/v1/kyc_aml_record/get_kyc_aml_documents/', {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json;charset=utf-8',
-            'Authorization': 'Bearer ' + jwt,
-        }
-    });
-
-    if (response.status == 200) {
-        let json = await response.json();
-        return json.data;
-    } else {
-        return;
-    }
-}
-
-async function fetchData() {
-
-    const [countries, supportedDocs] = await Promise.all([fetchCountryList(), fetchSupportedDocList()])
-
-    if (countries && supportedDocs) {
-        countryList.push(...countries);
-        supportedDocsList.push(...supportedDocs);
-
-        document.querySelector("#step-" + stepNumber).classList.remove("hidden");
-        var selectCountryList = document.querySelector("#country");
-
-        for (let index = 0; index < countryList.length; index++) {
-            const element = countryList[index];
-            var option = document.createElement("option");
-            option.value = element.name;
-            option.text = element.name;
-            selectCountryList.appendChild(option);
-        }
-
-        // for (let index = 0; index < selectDocTypeList.length; index++) {
-        //     const element = array[index];
-        //     var option = document.createElement("option");
-        //     option.value = element.iso3;
-        //     option.text = element.name;
-        //     selectCountryList.appendChild(option);
-        // }
-    }
-}
-
 function goToNextForm() {
     stepNumber = stepNumber + 1;
     /** Hide all form steps. */
@@ -179,10 +167,10 @@ function goToNextForm() {
 const preview = document.querySelector("#imageSrc");
 function getBase64(file) {
     var reader = new FileReader();
-    var base64Text = '';
     reader.readAsDataURL(file);
     reader.onload = e => {
         preview.src = e.target.result;
+        console.log(e.target);
         base64Text = reader.text;
         return reader.text;
     }
