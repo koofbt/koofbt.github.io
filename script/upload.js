@@ -187,18 +187,20 @@ function previewFile() {
     const file = document.querySelector("#pickFile").files[0];
     const reader = new FileReader();
 
-    reader.onload = e => {
-        preview.src = e.target.result;
-    }
+    
 
     reader.addEventListener(
-        "load",
+        "change",
         () => {
             // convert image file to base64 string
             preview.src = reader.result;
         },
         false,
     );
+
+    reader.onload = e => {
+        preview.src = e.target.result;
+    }
 
     if (file) {
         const x = getBase64(file);
