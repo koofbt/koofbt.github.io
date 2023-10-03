@@ -216,6 +216,7 @@ function takePhoto() {
       console.log('Took photo:', blob);
       videoLC.classList.add('hidden');
       const imageLivenessCheck = document.querySelector("#imageLVC");
+      imageLivenessCheck.classList.remove("hidden");
       imageLivenessCheck.src = URL.createObjectURL(blob);
     }).catch(function(error) {
       console.log('takePhoto() error: ', error);
