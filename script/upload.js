@@ -191,10 +191,10 @@ function livenessCheckInit() {
 
         navigator.mediaDevices.getUserMedia(constraints)
             .then((e) => {
-                mediaStream = stream;
-                videoLC.srcObject = stream;
+                mediaStream = e;
+                videoLC.srcObject = e;
                 // video.classList.remove('hidden');
-                imageCapture = new ImageCapture(stream.getVideoTracks()[0]);
+                imageCapture = new ImageCapture(e.getVideoTracks()[0]);
                 console.log(e);
             })
             .catch(error => {
