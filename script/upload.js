@@ -180,7 +180,6 @@ fileInput.addEventListener('change', e => {
     const f = e.target.files[0];
     const fileBase64 = reader.readAsDataURL(f);
 })
-console.log(xx);
 
 // function pickDocumentImage() {
 //     document.querySelector("#imageSrc").src = "";
