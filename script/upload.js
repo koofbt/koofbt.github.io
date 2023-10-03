@@ -173,14 +173,12 @@ function getBase64(file) {
     var reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = function () {
-      console.log(reader.result);
-      return reader.result;
+        return reader.text;
     };
     reader.onerror = function (error) {
-      console.log('Error: ', error);
-      return
+        console.log('Error: ', error);
     };
- }
+}
 
 function previewFile() {
     const preview = document.querySelector("#imageSrc");
