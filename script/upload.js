@@ -178,11 +178,9 @@ function getBase64(file) {
     reader.onload = e => {
         preview.src = e.target.result;
         base64Text = reader.text;
+        console.log(base64Text);
         return reader.text;
     }
-    // reader.onload = function () {
-    //     return reader.text;
-    // };
     reader.onerror = function (error) {
         console.log('Error: ', error);
     };
