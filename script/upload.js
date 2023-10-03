@@ -186,12 +186,18 @@ function livenessCheckInit() {
                 aspectRatio: { ideal: 1.7777777778 },
             },
             frameRate: { max: 30 },
-            facingMode: { exact: "user" }
+            facingMode: { exact: "user" },
         };
 
         navigator.mediaDevices.getUserMedia(constraints)
             .then((e) => {
                 mediaStream = e;
+
+                if (mediaStream) {
+                    mediaStream.getTracks().forEach(track => {
+                      track.stop();
+                    });
+                  }
                 videoLC.srcObject = e;
                 // video.classList.remove('hidden');
                 imageCapture = new ImageCapture(e.getVideoTracks()[0]);
