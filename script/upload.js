@@ -242,7 +242,6 @@ function takePhoto() {
     });
 }
 
-
 function getBase64(file) {
     var reader = new FileReader();
     reader.readAsDataURL(file);
@@ -268,21 +267,27 @@ function previewFile() {
 
 hideAll();
 
+function submit() {
+
+    let payLoad = {
+        "gender": document.querySelector('#gender').value.trim(),
+        "bvn": document.querySelector('#bvn').value.trim() ,
+        "document_number": document.querySelector('#docNumber').value.trim(),
+        "date_of_birth": DateFormat('yyyy-MM-dd').format(document.querySelector('#dob').value),
+        "country": document.querySelector('#country').value,
+        "state": document.querySelector('#state').value,
+        "street_line_one": document.querySelector("#residentialAddress").value,
+        "selfie": livenessCheckBase64,
+        "photo_id": base64Text,
+        'document_type': document.querySelector('#docType').value,
+        "postal_code": document.querySelector('#postalCode').value,
+        "politically_exposed_person": "True",
+        "accept_terms": "True",
+        "accept_data_usage_policy": "True",
+      };
+
+    console.log(payLoad)
+}
 
 
-// {
-//     "gender": _gender.name,
-//     if (_bvn != null && _bvn.isNotEmpty) "bvn": _bvn,
-//     "document_number": _documentNo,
-//     "date_of_birth": DateFormat('yyyy-MM-dd').format(_dob),
-//     "country": _country.name,
-//     if (_state != null) "state": _state.name,
-//     "street_line_one": _address,
-//     "selfie": _liveImageBase64,
-//     "photo_id": _docImageBase64,
-//     'document_type': _docType.code ?? _docType.name,
-//     "postal_code": _postalCode,
-//     "politically_exposed_person": "True",
-//     "accept_terms": "True",
-//     "accept_data_usage_policy": "True",
-//   };
+
