@@ -294,7 +294,6 @@ async function checkName(evt)  {
 
     let payLoad = {
         "gender": document.querySelector('#gender').value.trim(),
-        "bvn": document.querySelector('#bvn').value.trim() ,
         "document_number": document.querySelector('#docNumber').value.trim(),
         "date_of_birth": new Date(document.querySelector('#dob').value),
         "country": document.querySelector('#country').value,
@@ -308,6 +307,10 @@ async function checkName(evt)  {
         "accept_terms": "True",
         "accept_data_usage_policy": "True",
       };
+
+      if (document.querySelector('#bvn').value.length != 0) {
+        payLoad.set("bvn", document.querySelector('#bvn').value);
+      }
 
       const jwt = localStorage.getItem('bearerToken');
 
