@@ -214,13 +214,13 @@ function livenessCheckInit() {
 }
 // Get a Blob from the currently selected camera source and
 // display this with an img element.
-async function takePhoto() {
-    imageCapture.takePhoto().then(function (blob) {
+ function takePhoto() {
+    imageCapture.takePhoto().then(async function (blob)  {
         console.log('Took photo:', blob);
         videoLC.classList.add('hidden');
         const imageLivenessCheck = document.querySelector("#imageLVC");
 
-        const captureBase64 = toBase64(blob);
+        const captureBase64 = await toBase64(blob);
         console.log(captureBase64);
 
         // imageLivenessCheck.classList.remove("hidden");
