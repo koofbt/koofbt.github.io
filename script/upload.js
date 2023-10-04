@@ -260,6 +260,9 @@ async function previewFile() {
     const file = document.querySelector("#pickFile").files[0];
 
     if (file) {
+        const imageStr = await toBase64(file);
+        preview.src = imageStr;
+
         console.log(await toBase64(file));
         // const fileReader = getBase64(file);
 
