@@ -291,7 +291,8 @@ async function checkName(evt)  {
 
       const jwt = localStorage.getItem('bearerToken');
 
-      
+      document.querySelector('#loaderIcon').classList.remove('hidden');
+      document.querySelector('#finalSubmit').classList.add('hidden');
       let response = await fetch('https://dca.revadeep.xyz/api/v1/kyc_aml_record/', {
           method: 'POST',
           headers: {
@@ -300,12 +301,14 @@ async function checkName(evt)  {
           },
           body: JSON.stringify(payLoad),
       });
+      document.querySelector('#loaderIcon').classList.add('hidden');
   
       if (response.status == 200) {
           let json = await response.json();
           console.log(json.response);
           return json.data;
       } else {
+            alert(response.message);
           return;
       }
 
