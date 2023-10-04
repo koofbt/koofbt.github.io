@@ -168,12 +168,12 @@ function goToNextForm() {
     document.querySelectorAll(".form-step").forEach((formStepElement) => {
         formStepElement.classList.add("hidden");
     });
+    document.querySelector("#step-" + stepNumber).classList.remove("hidden");
+    document.querySelector('#backButton').classList.remove("hidden");
 
     livenessCheckInit();
 
 
-    document.querySelector("#step-" + stepNumber).classList.remove("hidden");
-    document.querySelector('#backButton').classList.remove("hidden");
 }
 
 function livenessCheckInit() {
