@@ -267,7 +267,12 @@ function previewFile() {
 
 hideAll();
 
-function submit() {
+const myTextbox = document.querySelector("#finalSubmit");
+myTextbox.addEventListener("click", checkName, false);
+
+function checkName(evt) {
+    const key = evt.key;
+    evt.preventDefault();
 
     let payLoad = {
         "gender": document.querySelector('#gender').value.trim(),
@@ -289,5 +294,5 @@ function submit() {
     console.log(payLoad)
 }
 
-
-
+  
+  
