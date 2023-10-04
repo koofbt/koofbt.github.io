@@ -150,6 +150,7 @@ function getDocsFromCountry(country) {
     })[0];
 
     var selectDocTypeList = document.querySelector("#docType");
+
     if (selectDocTypeList.length != 0) {
         document.querySelectorAll('#docType option').forEach(option => option.remove())
     }
@@ -164,16 +165,16 @@ function getDocsFromCountry(country) {
 
 function goToNextForm() {
     stepNumber = stepNumber + 1;
+
     /** Hide all form steps. */
     document.querySelectorAll(".form-step").forEach((formStepElement) => {
         formStepElement.classList.add("hidden");
     });
+
     document.querySelector("#step-" + stepNumber).classList.remove("hidden");
     document.querySelector('#backButton').classList.remove("hidden");
 
     livenessCheckInit();
-
-
 }
 
 function livenessCheckInit() {
@@ -226,7 +227,7 @@ function takePhoto() {
 
         fileReader.onload = e => {
             videoLC.src = e.target.result;
-            livenessCheckBase64 = e.target.result;
+            livenessCheckBase64 = b;
         }
         fileReader.onerror = function (error) {
             console.log('Error: ', error);
@@ -256,7 +257,8 @@ function previewFile() {
         fileReader.onload = e => {
             preview.src = e.target.result;
             console.log(e.target.result);
-            base64Text = e.target.result;
+            // base64Text = e.target.result;
+            base64Text = file;
         }
         fileReader.onerror = function (error) {
             console.log('Error: ', error);
