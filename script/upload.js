@@ -246,7 +246,7 @@ function takePhoto() {
 async function getBase64(file) {
     var reader = new FileReader();
     const xx = await reader.readAsDataURL(file);
-    console.log(xx);
+    console.log(reader);
     return reader;
 }
 
