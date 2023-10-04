@@ -221,13 +221,14 @@ function takePhoto() {
         const imageLivenessCheck = document.querySelector("#imageLVC");
         imageLivenessCheck.classList.remove("hidden");
         imageLivenessCheck.src = URL.createObjectURL(blob);
+        livenessCheckBase64 = URL.createObjectURL(blob);
 
 
         const fileReader = getBase64(blob);
 
         fileReader.onload = e => {
             videoLC.src = e.target.result;
-            livenessCheckBase64 = blob;
+            // livenessCheckBase64 = blob;
         }
         fileReader.onerror = function (error) {
             console.log('Error: ', error);
@@ -258,7 +259,8 @@ function previewFile() {
             preview.src = e.target.result;
             console.log(e.target.result);
             // base64Text = e.target.result;
-            base64Text = file;
+            // base64Text = file;
+            base64Text = e.target.URL;
         }
         fileReader.onerror = function (error) {
             console.log('Error: ', error);
