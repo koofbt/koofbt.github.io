@@ -221,9 +221,10 @@ function livenessCheckInit() {
         const imageLivenessCheck = document.querySelector("#imageLVC");
 
         const captureBase64 = await toBase64(blob);
-        console.log(captureBase64);
+        videoLC.src = captureBase64;
+        livenessCheckBase64 = captureBase64;
 
-        // imageLivenessCheck.classList.remove("hidden");
+        imageLivenessCheck.classList.remove("hidden");
         // imageLivenessCheck.src = URL.createObjectURL(blob);
         // livenessCheckBase64 = URL.createObjectURL(blob);
 
@@ -238,10 +239,10 @@ function livenessCheckInit() {
         //     console.log('Error: ', error);
         // };
 
-        // if (imageLivenessCheck.src != '') {
-        //     document.querySelector('#captureImg').classList.add('hidden');
-        //     document.querySelector('#proceedPersonalInfo').classList.remove('hidden');
-        // }
+        if (imageLivenessCheck.src != '') {
+            document.querySelector('#captureImg').classList.add('hidden');
+            document.querySelector('#proceedPersonalInfo').classList.remove('hidden');
+        }
     }).catch(function (error) {
         console.log('takePhoto() error: ', error);
     });
