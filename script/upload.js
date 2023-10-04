@@ -290,6 +290,8 @@ async function checkName(evt)  {
       };
 
       const jwt = localStorage.getItem('bearerToken');
+
+      
       let response = await fetch('https://dca.revadeep.xyz/api/v1/kyc_aml_record/', {
           method: 'POST',
           headers: {

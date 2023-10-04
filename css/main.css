@@ -707,14 +707,14 @@ button {
   border: 1.0px solid #24FEB7;
 }
 
-.preview-img > label {
+.preview-img>label {
   display: block;
   height: 100%;
   width: 100%;
 }
 
-.preview-img > label > img,
-.liveness-check > img  {
+.preview-img>label>img,
+.liveness-check>img {
   height: 100%;
   width: 100%;
 }
@@ -727,7 +727,7 @@ button {
   -webkit-mask-image: -webkit-radial-gradient(circle, white 100%, black 100%);
 }
 
-.liveness-check > video {
+.liveness-check>video {
   border-radius: 8px;
   height: 100% !important;
   min-width: 100%;
@@ -741,27 +741,62 @@ button {
   background-color: #24FEB7;
 }
 
-.go-back > svg {
+.go-back>svg {
   width: 25px;
 }
 
-.go-back > span {
+.go-back>span {
   color: #031735;
   font-weight: 500;
   font-size: 12.0px;
 }
 
-/* 
-.liveness-check > video {
-  Make video to at least 100% wide and tall 
-  /* min-width: 100%; 
-  min-height: 100%; 
-  Setting width & height to auto prevents the browser from stretching or squishing the video
-  width: auto;
-  height: auto;
-  Center the video 
+.loader {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: inline-block;
+  position: relative;
+  border: 3px solid;
+  border-color: #FFF #FFF transparent;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
+
+.loader::after {
+  content: '';
+  box-sizing: border-box;
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%,-50%); 
-} */
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  border: 3px solid;
+  border-color: transparent #FF3D00 #FF3D00;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  animation: rotationBack 0.5s linear infinite;
+  transform-origin: center center;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes rotationBack {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(-360deg);
+  }
+}
