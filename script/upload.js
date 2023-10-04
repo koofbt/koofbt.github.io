@@ -290,7 +290,7 @@ async function checkName(evt)  {
       };
 
       const jwt = localStorage.getItem('bearerToken');
-      let response = await fetch('https://dca.revadeep.xyz/api/v1/kyc/country_list/', {
+      let response = await fetch('https://dca.revadeep.xyz/api/v1/kyc_aml_record/', {
           method: 'POST',
           headers: {
               'Content-Type': 'application/json;charset=utf-8',
