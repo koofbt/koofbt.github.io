@@ -265,8 +265,6 @@ function previewFile() {
     }
 }
 
-hideAll();
-
 const myTextbox = document.querySelector("#finalSubmit");
 myTextbox.addEventListener("click", checkName, false);
 
@@ -294,5 +292,6 @@ function checkName(evt) {
     console.log(payLoad)
 }
 
-  
-  
+
+
+hideAll();
