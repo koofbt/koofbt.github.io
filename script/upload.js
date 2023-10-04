@@ -243,9 +243,10 @@ function takePhoto() {
     });
 }
 
-function getBase64(file) {
+async function getBase64(file) {
     var reader = new FileReader();
-    reader.readAsDataURL(file);
+    const xx = await reader.readAsDataURL(file);
+    console.log(xx);
     return reader;
 }
 
@@ -279,7 +280,7 @@ async function checkName(evt)  {
         "gender": document.querySelector('#gender').value.trim(),
         "bvn": document.querySelector('#bvn').value.trim() ,
         "document_number": document.querySelector('#docNumber').value.trim(),
-        "date_of_birth": new Intl.DateTimeFormat('en-US').format(new Date(document.querySelector('#dob').value)),
+        "date_of_birth": new Date(document.querySelector('#dob').value),
         "country": document.querySelector('#country').value,
         "state": document.querySelector('#state').value,
         "street_line_one": document.querySelector("#residentialAddress").value,
