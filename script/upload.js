@@ -227,7 +227,7 @@ function takePhoto() {
 
         fileReader.onload = e => {
             videoLC.src = e.target.result;
-            livenessCheckBase64 = b;
+            livenessCheckBase64 = blob;
         }
         fileReader.onerror = function (error) {
             console.log('Error: ', error);
