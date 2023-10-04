@@ -214,30 +214,34 @@ function livenessCheckInit() {
 }
 // Get a Blob from the currently selected camera source and
 // display this with an img element.
-function takePhoto() {
+async function takePhoto() {
     imageCapture.takePhoto().then(function (blob) {
         console.log('Took photo:', blob);
         videoLC.classList.add('hidden');
         const imageLivenessCheck = document.querySelector("#imageLVC");
-        imageLivenessCheck.classList.remove("hidden");
-        imageLivenessCheck.src = URL.createObjectURL(blob);
-        livenessCheckBase64 = URL.createObjectURL(blob);
+
+        const captureBase64 = toBase64(blob);
+        console.log(captureBase64);
+
+        // imageLivenessCheck.classList.remove("hidden");
+        // imageLivenessCheck.src = URL.createObjectURL(blob);
+        // livenessCheckBase64 = URL.createObjectURL(blob);
 
 
-        const fileReader = getBase64(blob);
+        // const fileReader = getBase64(blob);
 
-        fileReader.onload = e => {
-            videoLC.src = e.target.result;
-            // livenessCheckBase64 = blob;
-        }
-        fileReader.onerror = function (error) {
-            console.log('Error: ', error);
-        };
+        // fileReader.onload = e => {
+        //     videoLC.src = e.target.result;
+        //     // livenessCheckBase64 = blob;
+        // }
+        // fileReader.onerror = function (error) {
+        //     console.log('Error: ', error);
+        // };
 
-        if (imageLivenessCheck.src != '') {
-            document.querySelector('#captureImg').classList.add('hidden');
-            document.querySelector('#proceedPersonalInfo').classList.remove('hidden');
-        }
+        // if (imageLivenessCheck.src != '') {
+        //     document.querySelector('#captureImg').classList.add('hidden');
+        //     document.querySelector('#proceedPersonalInfo').classList.remove('hidden');
+        // }
     }).catch(function (error) {
         console.log('takePhoto() error: ', error);
     });
@@ -262,8 +266,9 @@ async function previewFile() {
     if (file) {
         const imageStr = await toBase64(file);
         preview.src = imageStr;
+        base64Text = imageStr;
 
-        console.log(await toBase64(file));
+        // console.log(await toBase64(file));
         // const fileReader = getBase64(file);
 
         // fileReader.onload = e => {
