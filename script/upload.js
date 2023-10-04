@@ -220,7 +220,18 @@ function livenessCheckInit() {
         videoLC.classList.add('hidden');
         const imageLivenessCheck = document.querySelector("#imageLVC");
 
-        const captureBase64 = await toBase64(blob);
+        const compressedFile = await compressImage(blob, {
+            // 0: is maximum compression
+            // 1: is no compression
+            quality: 0.4,
+    
+            // We want a JPEG file
+            type: 'image/jpeg',
+        });
+    
+
+
+        const captureBase64 = await toBase64(compressedFile);
         videoLC.src = captureBase64;
         livenessCheckBase64 = captureBase64;
 
@@ -264,8 +275,17 @@ const toBase64 = file => new Promise((resolve, reject) => {
 async function previewFile() {
     const file = document.querySelector("#pickFile").files[0];
 
+    const compressedFile = await compressImage(file, {
+        // 0: is maximum compression
+        // 1: is no compression
+        quality: 0.4,
+
+        // We want a JPEG file
+        type: 'image/jpeg',
+    });
+
     if (file) {
-        const imageStr = await toBase64(file);
+        const imageStr = await toBase64(compressedFile);
         preview.src = imageStr;
         base64Text = imageStr;
 
@@ -287,6 +307,23 @@ async function previewFile() {
 
 const myTextbox = document.querySelector("#finalSubmit");
 myTextbox.addEventListener("click", checkName, false);
+
+const compressImage = async (file, { quality = 1, type = file.type }) => {
+    // Get as image data
+    const imageBitmap = await createImageBitmap(file);
+
+    // Draw to canvas
+    const canvas = document.createElement('canvas');
+    canvas.width = imageBitmap.width;
+    canvas.height = imageBitmap.height;
+    const ctx = canvas.getContext('2d');
+    ctx.drawImage(imageBitmap, 0, 0);
+
+    // Turn into Blob
+    return await new Promise((resolve) =>
+        canvas.toBlob(resolve, type, quality)
+    );
+};
 
 async function checkName(evt)  {
     const key = evt.key;
