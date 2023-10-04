@@ -268,7 +268,7 @@ function previewFile() {
 const myTextbox = document.querySelector("#finalSubmit");
 myTextbox.addEventListener("click", checkName, false);
 
-function checkName(evt) {
+async function checkName(evt)  {
     const key = evt.key;
     evt.preventDefault();
 
@@ -289,7 +289,24 @@ function checkName(evt) {
         "accept_data_usage_policy": "True",
       };
 
-    console.log(payLoad)
+      const jwt = localStorage.getItem('bearerToken');
+      let response = await fetch('https://dca.revadeep.xyz/api/v1/kyc/country_list/', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json;charset=utf-8',
+              'Authorization': 'Bearer ' + jwt,
+          },
+          body: JSON.stringify(payLoad),
+      });
+  
+      if (response.status == 200) {
+          let json = await response.json();
+          console.log(json.response);
+          return json.data;
+      } else {
+          return;
+      }
+
 }
 
 
