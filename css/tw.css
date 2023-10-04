@@ -143,3 +143,30 @@ button {
         transform: rotate(-360deg);
     }
 }
+
+div#success {
+    border: 1.0px solid rgba(36, 254, 183, 0.15);
+    border-radius: 8px;;
+}
+
+div#success span {
+    font-weight: 400;
+    font-size: 12.0px;
+}
+
+#goBackBtn > button {
+    width: 100%;
+    height: 45px;
+    border-radius: 8px;
+    font-weight: 400;
+}
+
+.success-icon {
+    width: 150px;
+    height: 150px;
+    border-radius: 75px;
+    display: block;
+    background-color: rgba(36, 254, 183);
+    background-image: url("../assets/clock.png");
+    background-size: cover;
+}

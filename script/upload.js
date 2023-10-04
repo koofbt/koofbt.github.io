@@ -325,7 +325,7 @@ async function checkName(evt)  {
   
       if (response.status == 200) {
           let json = await response.json();
-          console.log(json.response);
+          window.location.href = 'https://koofbt.github.io/success.html'
           return json.data;
       } else {
             alert(response.message);
