@@ -276,7 +276,7 @@ function checkName(evt) {
         "gender": document.querySelector('#gender').value.trim(),
         "bvn": document.querySelector('#bvn').value.trim() ,
         "document_number": document.querySelector('#docNumber').value.trim(),
-        "date_of_birth": new Intl.DateTimeFormat('en-US').format(document.querySelector('#dob').value),
+        "date_of_birth": new Intl.DateTimeFormat('en-US').format(new Date(document.querySelector('#dob').value)),
         "country": document.querySelector('#country').value,
         "state": document.querySelector('#state').value,
         "street_line_one": document.querySelector("#residentialAddress").value,
