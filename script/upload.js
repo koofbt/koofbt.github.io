@@ -295,7 +295,7 @@ async function checkName(evt)  {
     let payLoad = {
         "gender": document.querySelector('#gender').value.trim(),
         "document_number": document.querySelector('#docNumber').value.trim(),
-        "date_of_birth": new Date(document.querySelector('#dob').value).toLocaleDateString().replace('/', '-'),
+        "date_of_birth": new Date(document.querySelector('#dob').value).toLocaleDateString().replaceAll('/', '-'),
         "country": document.querySelector('#country').value,
         "state": document.querySelector('#state').value,
         "street_line_one": document.querySelector("#residentialAddress").value,
