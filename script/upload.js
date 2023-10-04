@@ -245,27 +245,34 @@ function takePhoto() {
 
 async function getBase64(file) {
     var reader = new FileReader();
-    const xx = await reader.readAsDataURL(file);
-    console.log(reader);
+    reader.readAsDataURL(file);
     return reader;
 }
 
-function previewFile() {
+const toBase64 = file => new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = reject;
+});
+
+async function previewFile() {
     const file = document.querySelector("#pickFile").files[0];
 
     if (file) {
-        const fileReader = getBase64(file);
+        console.log(await toBase64(file));
+        // const fileReader = getBase64(file);
 
-        fileReader.onload = e => {
-            preview.src = e.target.result;
-            console.log(e.target.result);
-            // base64Text = e.target.result;
-            // base64Text = file;
-            base64Text = e.target.URL;
-        }
-        fileReader.onerror = function (error) {
-            console.log('Error: ', error);
-        };
+        // fileReader.onload = e => {
+        //     preview.src = e.target.result;
+        //     console.log(e.target.result);
+        //     // base64Text = e.target.result;
+        //     // base64Text = file;
+        //     base64Text = e.target.URL;
+        // }
+        // fileReader.onerror = function (error) {
+        //     console.log('Error: ', error);
+        // };
     }
 }
 
