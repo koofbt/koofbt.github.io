@@ -211,7 +211,6 @@ function livenessCheckInit() {
 
 
 }
-
 // Get a Blob from the currently selected camera source and
 // display this with an img element.
 function takePhoto() {
@@ -313,7 +312,5 @@ async function checkName(evt)  {
       }
 
 }
-
-
 
 hideAll();
