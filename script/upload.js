@@ -232,7 +232,8 @@ function livenessCheckInit() {
 
 
         const captureBase64 = await toBase64(compressedFile);
-        videoLC.src = captureBase64;
+
+        imageLivenessCheck.src = captureBase64;
         livenessCheckBase64 = captureBase64;
 
         imageLivenessCheck.classList.remove("hidden");
